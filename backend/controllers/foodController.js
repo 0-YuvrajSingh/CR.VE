@@ -22,4 +22,14 @@ const addFood = async (request, response) => {
   }
 };
 
-export { addFood };
+// all food list
+const listFood = async (request, response) => {
+  try{
+    const foods = await foodModel.find({});
+    response.json({ success: true, data: foods });
+  } catch (error) {
+    response.status(500).json({ success: false, message: error.message });
+  }
+}
+
+export { addFood, listFood };
